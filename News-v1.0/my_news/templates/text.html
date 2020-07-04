@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span class="token keyword">def</span> <span class="token method-definition"><span class="token function">add</span></span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">,</span> keyword<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    keyword <span class="token operator">=</span> keyword<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 关键词英文变为小写</span>
+    chars <span class="token operator">=</span> keyword<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 关键字去除首尾空格和换行</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> chars<span class="token punctuation">:</span>  <span class="token comment"># 如果关键词为空直接返回</span>
+        <span class="token keyword">return</span>
+    level <span class="token operator">=</span> <span class="token keyword">self</span><span class="token punctuation">.</span>keyword_chains
+    <span class="token comment"># 遍历关键字的每个字</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>chars<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 如果这个字已经存在字符链的key中就进入其子字典</span>
+        <span class="token keyword">if</span> chars<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token keyword">in</span> level<span class="token punctuation">:</span>
+            level <span class="token operator">=</span> level<span class="token punctuation">[</span>chars<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> <span class="token keyword">not</span> isinstance<span class="token punctuation">(</span>level<span class="token punctuation">,</span> dict<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">break</span>
+            <span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span>i<span class="token punctuation">,</span> len<span class="token punctuation">(</span>chars<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                level<span class="token punctuation">[</span>chars<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+                last_level<span class="token punctuation">,</span> last_char <span class="token operator">=</span> level<span class="token punctuation">,</span> chars<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+                level <span class="token operator">=</span> level<span class="token punctuation">[</span>chars<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">]</span>
+            last_level<span class="token punctuation">[</span>last_char<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token keyword">self</span><span class="token punctuation">.</span>delimit<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">}</span>
+            <span class="token keyword">break</span>
+    <span class="token keyword">if</span> i <span class="token operator">==</span> len<span class="token punctuation">(</span>chars<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">:</span>
+        level<span class="token punctuation">[</span><span class="token keyword">self</span><span class="token punctuation">.</span>delimit<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
+
+<span class="token keyword">def</span> <span class="token method-definition"><span class="token function">parse</span></span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">,</span> path<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    with open<span class="token punctuation">(</span>path<span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span> as f<span class="token punctuation">:</span>
+        <span class="token keyword">for</span> keyword <span class="token keyword">in</span> f<span class="token punctuation">:</span>
+            <span class="token keyword">self</span><span class="token punctuation">.</span>add<span class="token punctuation">(</span>str<span class="token punctuation">(</span>keyword<span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    print<span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">.</span>keyword_chains<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token method-definition"><span class="token function">filter</span></span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">,</span> message<span class="token punctuation">,</span> repl<span class="token operator">=</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    message <span class="token operator">=</span> message<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    ret <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    start <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">while</span> start <span class="token operator">&lt;</span> len<span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        level <span class="token operator">=</span> <span class="token keyword">self</span><span class="token punctuation">.</span>keyword_chains
+        step_ins <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">for</span> char <span class="token keyword">in</span> message<span class="token punctuation">[</span>start<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> char <span class="token keyword">in</span> level<span class="token punctuation">:</span>
+                step_ins <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">1</span>
+                <span class="token keyword">if</span> <span class="token keyword">self</span><span class="token punctuation">.</span>delimit <span class="token keyword">not</span> <span class="token keyword">in</span> level<span class="token punctuation">[</span>char<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                    level <span class="token operator">=</span> level<span class="token punctuation">[</span>char<span class="token punctuation">]</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>
+                    ret<span class="token punctuation">.</span>append<span class="token punctuation">(</span>repl <span class="token operator">*</span> step_ins<span class="token punctuation">)</span>
+                    start <span class="token operator">+</span><span class="token operator">=</span> step_ins <span class="token operator">-</span> <span class="token number">1</span>
+                    <span class="token keyword">break</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                ret<span class="token punctuation">.</span>append<span class="token punctuation">(</span>message<span class="token punctuation">[</span>start<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token keyword">break</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            ret<span class="token punctuation">.</span>append<span class="token punctuation">(</span>message<span class="token punctuation">[</span>start<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        start <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">1</span>
+
+    <span class="token keyword">return</span> <span class="token string">''</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>ret<span class="token punctuation">)</span>
+</body>
+</html>
