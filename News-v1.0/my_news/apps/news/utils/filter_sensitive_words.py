@@ -1,112 +1,103 @@
-# -*- coding:utf-8 -*-
-
-"""
-# 过滤敏感词
-# site: https://www.jianshu.com/p/c124b0d6ebb0
-# site: https://my.oschina.net/mickelfeng/blog/845545
-"""
-
-import time
-
-class DFAFilter(object):
-    """
-    DFA 过滤
-    """
-
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+# author:zbt
+# datetime:2020-03-16 11:53
+# software: PyCharm
+Dir_sensitive='./敏感词.txt'
+Dir_stopWord='./停用词.txt'
+class SensitiveFilter:
     def __init__(self):
-        self.keyword_chains = {}  # 关键词链表
-        self.delimit = '\x00'  # 限定，表示结束
-
-    # 增加
-    def add(self, keyword):
-        keyword = keyword.lower()  # 如果有英文, 变为小写
-        chars = keyword.strip()  # 去除首尾空格
-        if not chars:  # 关键词为空，直接返回
-            return
-
-        map_keywords = self.keyword_chains
-        # 遍历每个关键字
-        for i in range(len(chars)):
-            # 如果字符存在于字符链的key中,
-            if chars[i] in map_keywords:
-                # 进入其子字典
-                map_keywords = map_keywords[chars[i]]
-
-            # 不在字典中，为新的敏感词
-
-            # 如果是已存在的敏感词，如果不是字典，退出循环
-            if not isinstance(map_keywords, dict):
-
-                break
-
-            for j in range(i, len(chars)):
-                if j == len(chars) - 1:
-                    last_keywords[self.delimit] = 0
-                    break
-                map_keywords[chars[j]] = {}
-                last_keywords, last_char = map_keywords, chars[j]
-                map_keywords = last_keywords[chars[j]]
-
-
-            # # 遍历剩下的字词
-            # for j in range(i, len(chars)):
-            #     # 先创建敏感词汇枝叶
-            #     level[chars[j]] = {}
-            #     # 暂时将新的枝叶作为最后的枝叶，将敏感字作为最后的叶子
-            #     last_level, last_char = level, chars[j]
-            #     #
-            #     level = level[chars[j]]
-            #     last_level[last_char] = {self.delimit: 0}
-            if i == len(chars) - 1:
-                map_keywords[self.delimit] = 0
-                break
-
-
-    # 解析
-    def parse_file(self, path):
-        """
-        获取目标文件
-        """
-        with open(path, encoding='utf-8') as f:
-            for keyword in f:
-                self.add(str(keyword).strip())
-            print(self.keyword_chains)
-
-    # 执行过滤
-    def filter(self, message, sub_str='*'):
-        message = message.lower()
-        result = []
-        start = 0
-        while start < len(message):
-            level = self.keyword_chains
-            step_incr = 0
-
-            for char in  message[start:]:
-                if char in level.keys():
-                    step_incr += 1
-
-                    if self.delimit not in level[char]:
-                        level = level[char]
-                    else:
-                        result.append(sub_str * step_incr)
-                        start += step_incr - 1
-                        break
+        # file把敏感词库加载到列表中
+        file = open(Dir_sensitive, 'r', encoding = 'ANSI')
+        file_lst = file.readlines()
+        self.sensitiveWordList = [i.split('\n')[0] for i in file_lst]
+        # print(sensitiveWordList[:10])
+        # >>['1234', '12345', '123456', '甲基麻黄碱', '来曲唑', '依西美坦', '阿那曲唑', '螺内酯', '沙美特罗', '丙磺舒']
+        # file1把停用词加载到列表中
+        file1 = open(Dir_stopWord, 'r', encoding = 'ANSI')
+        file1_lst = file1.readlines()
+        self.stopWordList = [i.split('\n')[0] for i in file1_lst]
+        ##得到sensitive字典
+        self.sensitiveWordMap = self.initSensitiveWordMap(self.sensitiveWordList)
+    #构建敏感词库
+    def initSensitiveWordMap(self,sensitiveWordList):
+        sensitiveWordMap = {}
+        # 读取每一行，每一个word都是一个敏感词
+        for word in sensitiveWordList:
+            nowMap=sensitiveWordMap
+            #遍历该敏感词的每一个特定字符
+            for i in range(len(word)):
+                keychar=word[i]
+                wordMap=nowMap.get(keychar)
+                if wordMap !=None:
+                    #nowMap更新为下一层
+                    nowMap=wordMap
                 else:
-                    result.append(message[start])
-                start += 1
+                    #不存在则构建一个map,isEnd设置为0，因为不是最后一个
+                    newNextMap={}
+                    newNextMap["isEnd"]=0
+                    nowMap[keychar]=newNextMap
+                    nowMap=newNextMap
+                #到这个词末尾字符
+                if i==len(word)-1:
+                    nowMap["isEnd"]=1
+        #print(sensitiveWordMap)
+        return sensitiveWordMap
 
-        return ''.join(result)
+    def checkSensitiveWord(self,txt,beginIndex=0):
+        '''
+        :param txt: 输入待检测的文本
+        :param beginIndex:输入文本开始的下标
+        :return:返回敏感词字符的长度
+        '''
+        nowMap=self.sensitiveWordMap
+        sensitiveWordLen=0 #敏感词的长度
+        containChar_sensitiveWordLen=0 #包括特殊字符敏感词的长度
+        endFlag=False #结束标记位
 
+        for i in range(beginIndex,len(txt)):
+            char=txt[i]
+            if char in self.stopWordList:
+                containChar_sensitiveWordLen+=1
+                continue
 
-if __name__ == '__main__':
-    time1 = time.time()
-    gfw = DFAFilter()
-    path = "./sensitive_words.txt"
-    gfw.parse_file(path)
-    text = "你真是个大傻逼，大傻子，傻大个，大坏蛋，坏人。"
-    result = gfw.filter(text,)
+            nowMap=nowMap.get(char)
+            if nowMap != None:
+                sensitiveWordLen+=1
+                containChar_sensitiveWordLen+=1
+                #结束位置为True
+                if nowMap.get("isEnd")==1:
+                    endFlag=True
+            else:
+                break
+        if  endFlag==False:
+            containChar_sensitiveWordLen=0
+        #print(sensitiveWordLen)
+        return containChar_sensitiveWordLen
 
-    print(text)
-    print(result)
-    time2 = time.time()
-    print('总共耗时：' + str(time2 - time1) + 's')
+    def getSensitiveWord(self,txt):
+        cur_txt_sensitiveList=[]
+        #注意，并不是一个个char查找的，找到敏感词会i增强敏感词的长度
+        for i in range(len(txt)):
+            length=self.checkSensitiveWord(txt,i)
+            if length>0:
+                word=txt[i:i+length]
+                cur_txt_sensitiveList.append(word)
+                i=i+length-1 #出了循环还要+1 i+length是没有检测到的，下次直接从i+length开始
+
+        return cur_txt_sensitiveList
+
+    def replaceSensitiveWord(self,txt,replaceChar='*'):
+        Lst=self.getSensitiveWord(txt)
+        #print(Lst)
+        for word in Lst:
+            replaceStr=len(word)*replaceChar
+            txt=txt.replace(word,replaceStr)
+
+        return txt
+
+if __name__ == "__main__":
+    str="你是傻san逼么？"
+    Filter=SensitiveFilter()
+    replaceStr=Filter.replaceSensitiveWord(str)
+    print(replaceStr)
