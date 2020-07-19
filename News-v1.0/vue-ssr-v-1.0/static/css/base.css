@@ -1,0 +1,331 @@
+@media screen and (max-width: 1023px) {
+  .wrapper-info {
+    width: 768px!important;
+  }
+  /* 导航条logo */
+  .logo-position h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-position h1 img {
+    width: 100%;
+    height: auto;
+  }
+  /* 隐藏与显示分类选择 */
+  .wrapper-info .select-cates {
+    display: block\9;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: auto;
+    width: 33%;
+  }
+  .wrapper-info .select-cates .show-cates {
+    display: none !important;
+    justify-content: flex-start;
+    align-items: center;
+
+  }
+
+  .wrapper-info .select-cates ul.cates-main {
+    display: none !important;
+  }
+  /* 重新排序，利用浮动 */
+  /* .wrapper-info 》 */
+
+  div.init-select-bar-select label {
+    display: inline-block;
+    width: 80px;
+    text-align: left;
+    position: relative;
+  }
+  div.init-select-bar-select label>i {
+    color: #333;
+    line-height: 60px;
+    font-size: 18px;
+    margin-left: 6px;
+  }
+  /* 点击显示分类选择 */
+  #bars1:checked + ul, #bars2:checked + ul{
+    display: flex;
+    display: block\9;
+  }
+  .wrapper-info .logo-position {
+    order: 2 !important;
+    width: 28%;
+    text-align: center;
+    float: none!important;
+
+    /* background: red; */
+  }
+  .wrapper-info .select-cates {
+    order: 0 !important;
+    width: 33%;
+    float: left;
+    margin-right: auto;
+  }
+  .wrapper-info .select-search {
+    order: 3 !important;
+    width: 28%;
+    text-align: right;
+  }
+  .wrapper-info .header-select-main .side-search-content button {
+    float: none;
+    margin-right: 3px;
+  }
+  /* 主页主体内容 */
+  main .info-container .info-item-left .line1 .two-attach .contentTwo,
+  main .info-container .info-item-left .line1 .two-attach div div.bd
+  {
+    width: 256px!important;
+  }
+  .info-container .info-item-left {
+    width: 768px!important;
+  }
+  /* 第一行块的第一个内容的图片大小 */
+  .line1 .bd .img-tu img,
+  .line1 .bd .img-tu {
+    width: 458px!important;
+  }
+  .line1 div>div.bd.fl:first-of-type {
+    margin-right: 12px!important;
+  }
+  .info-item-left .line1 .one-main .bd .contentTwo,
+  .info-item-left .line1 .one-main .bd .contentOne {
+    width: 458px!important;
+  }
+  /* 隐藏最新的文章 */
+  .info-container .info-item-right.fl {
+    display: none;
+  }
+
+  /* line2 第二行处理 */
+  .line2>div>.bd.top20 {
+    margin-top: 12px;
+  }
+  .line2>div>.bd.left20 {
+    margin-left: 13px
+  }
+  /* 第二行缩放 */
+  .line2>div>div.bd {
+    width: 227px!important;
+  }
+  .line2 div.bd .imgTu img{
+    width: 225px;
+    height: 155px;
+  }
+  /* 第二行新闻列表间距调整 */
+  .line2 div.bd .contentTwo .init-news-list .news-list li a {
+    width: 70%!important;
+  }
+  /* 第三行设置 */
+  .line3 {
+    margin-top: 13px;
+  }
+  .line3 div div.bd {
+    width: 768px!important;
+    box-sizing: border-box;
+  }
+  .line3 div div.bd .contentOne {
+    display: none;
+  }
+  .line3 div div.bd .contentTwo {
+    display: flex;
+    justify-content: center;
+  }
+  /* 底部信息 */
+  footer {
+    min-width: auto!important;
+    width: auto;
+  }
+  /* 同类型区域显示设置 */
+  .init-main .same-type .same-item:nth-child(2) {
+    display: none!important;
+  }
+  /* 设置存放数据的总容器的宽度 */
+  .init-same-type {
+    width: 768px\9!important;
+  }
+
+
+  /* 设置文章显示样式 */
+  main .init-main .init-article {
+    display: flex;
+    width: 768px!important;
+  }
+  .init-article .init-article-main .init-detail-container {
+    width: 740px;
+  }
+  /* 清空无用的两侧元素 */
+  .init-main .init-article .init-article-left,
+  .init-main .init-article .init-article-right {
+    display: none!important;
+  }
+  /* 文章居中 */
+  .init-main .init-article .init-article-main {
+    margin: 0 auto;
+    margin-left: 14px\9;
+    clear: both;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+  .wrapper-info {
+    width: 1024px!important;
+  }
+  .header-top-nav .wrapper-info {
+    width: 1024px;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+  /* 导航条 */
+  .header-select-main {
+    padding: 0 20px;
+    position: relative;
+  }
+  /* 导航条logo */
+  .logo-position h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* 隐藏分类选择 */
+  .wrapper-info>.header-select-main>div.init-select-bar-select > ul.select-bar-select {
+    display: flex;
+    display: block\9;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    background-color: #fcfcfc;
+  }
+  /* 写分类的不缩放 */
+  .wrapper-info>.header-select-main>div.init-select-bar-select > ul.select-bar-select li {
+    flex-shrink: 0;
+    color: #2e82d5;
+    /* color: rgba(17,167,181, .65); */
+  }
+  div.init-select-bar-select label {
+    display: inline-block;
+    width: 80px;
+    text-align: center;
+    position: relative;
+  }
+  div.init-select-bar-select label>i {
+    color: #333;
+    line-height: 60px;
+    font-size: 18px;
+
+  }
+  /* 点击显示分类选择 */
+  #bars1:checked + ul, #bars2:checked + ul{
+    display: flex;
+    display: block\9;
+  }
+  .wrapper-info .header-select-main .logo-position {
+    order: 2;
+    width: 33%;
+    float: none!important;
+    text-align: center!important;
+    /* background: red; */
+  }
+  .wrapper-info .header-select-main .init-select-bar-select {
+    order: 1;
+    width: 33%;
+    margin-right: auto;
+    float: left;
+
+  }
+  .wrapper-info .header-select-main .side-search-content {
+    order: 3;
+    width: 33%;
+    float: right;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .wrapper-info .header-select-main .side-search-content button {
+    float: none;
+  }
+  /* 首页的主体内容 */
+  .info-container .info-item-left.fl {
+    padding: 0 12px;
+  }
+  /* 隐藏侧边内容 */
+  .info-container .info-item-right.fl {
+    display: none;
+  }
+  /* 修改footer样式 */
+  footer {
+    width: 100%!important;
+    min-width: auto!important;
+  }
+  /* 同类型文章的样式 */
+  .init-main .init-article .init-article-left,
+  .init-main .init-article .init-article-right {
+    display: none!important;
+  }
+  .init-main .init-article .init-article-main {
+    margin: 0 auto;
+    margin-left: 92px\9;
+    clear: both;
+  }
+  .same-type .same-item:nth-child(1) {
+    display: flex;
+    float: left\9;
+    width: 768px\9!important;
+    order: 1;
+    flex: auto 1 0;
+    justify-content: flex-start;
+  }
+  /* 设置侧边新闻的样式, 清除初始宽度 */
+  .same-type .same-item:nth-child(2),
+  .same-item .same-type-attach,
+  .same-item .same-type-attach .init-same-fixed,
+  .same-item .same-type-attach .init-same-fixed .init-latest-news,
+  .same-item .same-type-attach .init-same-fixed .init-tags-cloud {
+    width: 256px!important;
+    box-sizing: border-box!important;
+  }
+  /* 设置与主体内容的边距 */
+  .same-item .same-type-attach .init-same-fixed>div .init-side-box {
+    margin: auto 5px;
+    margin-bottom: 20px;
+  }
+  /*  */
+  .same-fixed{
+    top: 98px!important;
+    margin-left: 256px!important;
+  }
+  .init-same-fixed .init-tags-cloud .init-side-box .tag-item {
+    margin: 6px 12px!important;
+  }
+  .same-item .same-type-attach .init-same-fixed .init-tags-cloud {
+    height: 243px;
+    overflow: hidden;
+  }
+  /* 设置页面主体的样式 */
+  /* 设置文章显示样式 */
+  main .init-main .init-article {
+    display: flex;
+  }
+
+}
+
+@media screen and (min-width: 1366px) {
+  .wrapper-info {
+    width: 1366px;
+  }
+  .same-fixed {
+    margin-left: auto;
+    left: auto;
+    right: 8px;
+  }
+  .header-top-nav .wrapper-info {
+    width: 1366px;
+  }
+  div.init-select-bar-select label.b100 {
+    display: none;
+  }
+}

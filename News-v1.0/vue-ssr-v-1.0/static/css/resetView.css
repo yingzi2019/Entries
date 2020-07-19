@@ -1,0 +1,228 @@
+/* 全局宽高设置 */
+* {
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+.body {
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+
+div {
+  /* box-sizing: border-box; */
+}
+.wrapper-info {
+  width: 1366px;
+  margin: 0 auto;
+  background-color: inherit;
+}
+/* 基本颜色 */
+.m-c {
+  color: #007aff;
+}
+.m-a-c {
+  color: #00ce41;
+}
+/* 按钮样式 */
+.btn-c {
+  color: #007aff;
+}
+.btn-c:hover, .btn-c:active {
+  color: #005aff;
+}
+.yaozhi {
+  color:#1578d5;
+}
+/* 激活样式 */
+.a-active {
+  color: #337aff!important;
+}
+.at-hover:hover {
+  /* color: #337aff!important; */
+  color: #337aff!important;
+  /* color: #11a7b5; */
+  cursor: pointer;
+}
+/* 可选背景色 */
+.bg-c {
+  background-color: #00ce41;
+}
+.bg-f {
+  background-color: #fff;
+}
+/* 通用圆角 */
+.br4 {
+  border-radius: 4px;
+}
+.br6 {
+  border-radius: 6px;
+  border-radius: 7px\9;
+}
+.br8 {
+  border-radius: 8px;
+  border-radius: 9px\9;
+}
+/* 工具类样式 */
+.not-row {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}
+.fl {float: left}
+.fr {float: right}
+.text-center {
+  text-align: center;
+}
+.cut-s {
+  display: inline-block;
+  height: 1rem;
+  width: 1px;
+  margin: 0 10px;
+}
+/* 清除浮动，解决高度塌陷 */
+.not-s {
+  display: none;
+}
+.clear-f:after {
+  /* display: table;
+  content: "";
+  clear: both;
+  overflow:hidden;  */
+}
+.clear-f {
+  clear: both;
+  /* width: 0;
+  height: 1px;
+  overflow:hidden;  */
+}
+.line {
+  display: block;
+  border-bottom: 1px solid #dbdbdb;
+}
+.tth {
+  line-height: 25px;
+}
+.tth label {
+  display: block;
+  float: left;
+}
+.a-more {
+  width: 62px;
+  height: 28px;
+}
+.bd {
+  padding: 10px;
+  background-color: #fff;
+  /* border: 1px solid #dbdbdb; */
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 4px, rgba(0, 0, 0, 0.04) 0px 0px 6px;
+}
+.b100 {
+  display: block;
+  width: 100%;
+  height:100%;
+}
+/* 标签样式 */
+.tag-item {
+  width: 54px;
+  height: auto;
+  padding: 0 8px;
+  margin: 6px 0;
+  line-height: 20px;
+  font-size: 13px;
+  font-size: 12px\9;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  color: #7c8d93;
+  background-color: #f4f8fc;
+}
+.tag-item:hover {
+  border-radius: 20px;
+  background-image: -moz-linear-gradient(10deg, #6ebdfe 0%, #9b8aff 100%);
+  background-image: -webkit-linear-gradient(10deg, #6ebdfe 0%, #9b8aff 100%);
+  background-image: -ms-linear-gradient(10deg, #6ebdfe 0%, #9b8aff 100%);
+  background-image: linear-gradient(10deg, #6ebdfe 0%, #9b8aff 100%);
+  color: #fff;
+  box-shadow: 0 5px 3px 0px rgba(0,36,100,0.3);
+  color: #6ebdfe\9;
+}
+.li-num {
+  display: block;
+  float: left;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  margin-right: 5px;
+  text-align: center;
+  color: #ffffff;
+  background-color: #ababab;
+  border-radius: 5px;
+}
+/* 布局设置 */
+/* 消除标签默认边距 */
+html,body,ul,ol,li,p,
+h1,h2,h3,h4,h5,h6,
+dl,dd,select,input,textarea,form{
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0 auto;
+  font-size: 14px;
+}
+/* 取消列表默认样式 */
+ul,ol,li{
+  list-style:none;
+}
+li {
+  display: inline-block;
+}
+/* 取消默认斜体 */
+em{
+  font-style: normal;
+}
+/* 取消img边框 */
+img {
+  border: none;
+}
+/* 取消a标签默认样式 */
+a:focus{color: inherit; text-decoration: none}
+a:visited{color: inherit; text-decoration: none}
+a:active{color: inherit; text-decoration: none}
+a:link{color: inherit; text-decoration: none}
+/* 常用颜色 */
+.test {
+  color: #1a1a1a;
+  color: #646464;
+  color: #76839b;
+  color: #1abc9c;
+  color: #2e82d5;
+  border-bottom: 1px solid #90bba8;
+}
+.ttl {
+  position: relative;
+  height: 45px;
+  border-bottom: 1px solid #90bba8;
+  margin: 5px 20px;
+  box-shadow: 0 5px 3px 0px rgba(0,36,100,0.3);
+}
+.pos-ul {
+  margin: 0 20px 10px;
+  padding: 15px 0 10px;
+  list-style: none;
+  overflow: hidden;
+}
+
+/* 浏览器滚动条修改 */
+::-webkit-scrollbar {
+  width: 0.5vw;
+  height: 1vh;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 100%;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(0,0,0,.5);
+}

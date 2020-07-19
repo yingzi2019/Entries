@@ -1,0 +1,25 @@
+// @import 'reset.scss';
+@import 'mixin.scss';
+@import 'color.scss';
+@import 'tools.scss';
+
+// 基础字体大小
+$px: 0.5px;
+
+$wrapper-info: 2732 * $px;
+
+// 浏览器滚动条设置
+::-webkit-scrollbar {
+  width: 0.5vw;
+  height: 1vh;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 100%;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(0,0,0,.5);
+}
+

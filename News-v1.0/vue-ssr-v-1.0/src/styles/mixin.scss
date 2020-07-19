@@ -1,0 +1,9 @@
+
+
+@mixin border-round ($angle:2.5px) {
+  -webkit-border-radius: $angle;
+  -moz-border-radius: $angle;
+  -ms-border-radius: $angle;
+  -o-border-radius: $angle;
+  border-radius: $angle;
+}
